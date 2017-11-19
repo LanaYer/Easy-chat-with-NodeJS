@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Чат</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+
+<body>
+<div class="container">
+	<div class="chat-name-form">
+		<p>Введите логин</p>
+		<form id="setNewName" action="">
+			<input id="setName" autocomplete="off" />
+		</form>
+	</div>
+
+
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+        var socket = io();
+        $('#setNewName').submit(function(){
+            socket.emit('set name', $('#setName').val());
+            return false;
+        });
+        informUser(socket);
+        changeHtml(socket);
+        showMessage(socket);
+        update(socket);
+        function sendMessage() {
+            $('#sendMessage').submit(function () {
+                socket.emit('chat message', $('#message').val());
+                $('#message').val('');
+                return false;
+            });
+        }
+        function messageForm(){
+            return html = '<div class="chat-message-block"><div class="container"><div class="chat-messages"><div id="messages"></div></div>'
+                    + '<div class="chat-users" id="righty">Online users<ul id="usersList">'
+                    + '</ul></div>'
+					+ '<div class="chat-message_form"><form id="sendMessage" action="">'
+                    + '<input id="message" autocomplete="off" /><button id="button">Отправить</button>'
+                    + '</form></div></div></div>';
+        }
+        function changeHtml(socket){
+            socket.on('change html', function(){
+                $('#setNewName').remove();
+                $('#welcome').remove();
+                $(".body").add(messageForm()).appendTo( document.body );
+                sendMessage();
+            });
+        }
+        function informUser(socket){
+            socket.on('inform user', function(msg){
+                alert(msg.info);
+            });
+        }
+        function showMessage(socket){
+            socket.on('show message', function(msg){
+                $('#messages').append($('<p>').text(msg));
+                $('#messages').scrollTop($('#messages')[0].scrollHeight);
+            });
+        }
+        function update(socket){
+            socket.on('update list', function(data){
+                $('#usersList').empty();
+                var html = '';
+                for(var i in data) {
+                    if(data[i] != null && data[i].substring(0,5) != "Guest") {
+                        html += '<li>' + data[i] + '</li>';
+                    }
+                }
+                $( "#usersList" ).append(html);
+            });
+        }
+    </script>
+</div>
+</body>
+</html>

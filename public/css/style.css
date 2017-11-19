@@ -1,0 +1,82 @@
+body {
+
+}
+.container{
+	width: 1044px;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+}
+.chat-name-form{
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;	
+	padding: 35px;
+	background: #f0f6fc;
+	margin-top: 10%;
+}
+.chat-name-form input{
+	width: 96%;
+	height: 40px;
+	border: 1px solid #f1f1f1;
+	border-radius: 3px;	
+	padding: 0 2%;
+}
+.chat-name-form p{
+	font-size: 24px;
+	margin-bottom: 30px;
+	margin-top: 15px;
+	color: #49586c;
+}
+.chat-message-block{
+	position: absolute;
+	top: 0;
+	right:0;
+	left: 0;
+	background: #fff;
+}
+.chat-messages{
+	width: 65%;
+	display: inline-block;
+	float: left;
+	height: 500px;
+	padding: 2%;
+	border: 1px solid #49586c;
+	margin-top: 20px;
+}
+.chat-users{
+	width: 26%;
+	display: inline-block;
+	float: left;	
+	height: 500px;
+	padding: 2%;
+	border: 1px solid #49586c;
+	background-color: #f0f6fc;
+	font-size: 16px;
+	margin-top: 20px;
+}
+.chat-message_form{
+	width: 100%;
+	display: inline-block;
+	float: left;	
+}
+.chat-message_form input{
+	width: 907px;
+	display: inline-block;
+	float: left;	
+	height: 40px;
+	border: 1px solid #49586c;
+	border-radius: 3px;	
+	padding: 0 15px;
+}
+.chat-message_form button{
+	width: 100px;
+	display: inline-block;
+	float: left;	
+	height: 42px;
+	border: 1px solid #f1f1f1;
+	border-radius: 3px;	
+	color: #fff;
+	background: #16d086;
+	cursor: pointer;
+}
